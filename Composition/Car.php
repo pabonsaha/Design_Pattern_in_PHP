@@ -32,7 +32,7 @@ class Car
 
     public function driveTo(string $destination, ?string $song = null): void
     {
-        echo "=== Driving {$this->brand} {$this->model} ===\n";
+        echo "Driving {$this->brand} {$this->model}\n";
         echo $this->engine->start() . "\n";
         echo $this->gps->navigate($destination) . "\n";
 
@@ -40,6 +40,6 @@ class Car
             echo $this->audio->playMusic($song) . "\n";
         }
 
-        echo "🚗 Cruising smoothly on the road!\n\n";
+        echo "Cruising smoothly on the road!\n\n";
     }
 }

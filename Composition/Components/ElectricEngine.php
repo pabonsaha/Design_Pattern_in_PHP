@@ -8,6 +8,6 @@ class ElectricEngine implements EngineInterface
 {
     public function start(): string
     {
-        return "⚡ Electric motor humming silently...";
+        return "Electric motor humming silently.";
     }
 }

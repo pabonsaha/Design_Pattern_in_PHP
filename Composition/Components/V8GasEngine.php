@@ -8,6 +8,6 @@ class V8GasEngine implements EngineInterface
 {
     public function start(): string
     {
-        return "🔥 V8 Engine roaring to life: VROOOOM!";
+        return "V8 Engine roaring.";
     }
 }

@@ -21,14 +21,14 @@ $tesla->driveTo("San Francisco, CA", "Daft Punk - Around the World");
 
 
 
-$mustang = new Car(
-    brand: "Ford",
-    model: "Mustang GT",
+$bmw = new Car(
+    brand: "BMW",
+    model: "M5",
     engine: new V8GasEngine(),
     gps: new SatelliteGps()
 );
-$mustang->driveTo("Route 66");
+$bmw->driveTo("Germany");
 
 
-$mustang->setEngine(new ElectricEngine());
-$mustang->driveTo("Downtown Eco-District");
+$bmw->setEngine(new ElectricEngine());
+$bmw->driveTo("Germany");

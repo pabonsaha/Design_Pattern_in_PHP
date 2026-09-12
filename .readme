@@ -4,3 +4,10 @@ Singleton Design pattern
 2. Only one instance of the class should exits.
 3. Other classes should be able to get instance of the Singleton class.
 4. Used in Logging, Cache, Session, Drivers.
+
+Factory Design pattern
+
+1. Creational Design pattern.
+2. Used when we have multiple sub-classes of a super class(parent class) and based on input we want to return one class instance.
+3. It provides abstraction between implementation and client classes.
+4. Remove the instantiation of client class from client code.
