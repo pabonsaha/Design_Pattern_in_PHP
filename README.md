@@ -61,13 +61,16 @@ Creational design patterns deal with object creation mechanisms, increasing flex
 ---
 
 ### 4. Prototype Pattern
-> Allows copying existing objects without making your code dependent on their classes.
+> Allows copying existing objects without making your code dependent on their classes, and modifying the cloned copy independently.
 
 * **Folder:** `Prototype/`
-* **Concepts:**
-  * Leverages PHP's native `clone` keyword and `__clone()` magic method.
-  * Deep copy vs. shallow copy for nested object references.
-* **Common Use Cases:** Spawning game entities, cloning pre-configured document/email templates.
+* **Key Components:**
+  * **Prototype Class (`Vehicle.php`):** Encapsulates an internal list of items (`$carList`) and provides a `clone()` method that creates a new independent instance with the current state.
+  * **Client / Runner (`Prototype.php`):** Instantiates a base vehicle list prototype, creates an independent copy via `clone()`, and appends new items to the clone without mutating the original object.
+* **Why Use It:**
+  * Avoids expensive re-initialization or redundant data fetching when creating similar objects.
+  * Guarantees isolation: mutating the cloned object leaves the original prototype state intact.
+* **Common Use Cases:** Cloning pre-configured templates, caching/spawning complex object graphs, creating isolated copies of expensive database entities.
 
 ---
 
@@ -106,6 +109,9 @@ docker compose exec php php Factory/Factory.php
 # Builder Pattern
 docker compose exec php php Builder/Builder.php
 
+# Prototype Pattern
+docker compose exec php php Prototype/Prototype.php
+
 # Composition Principle
 docker compose exec php php Composition/Composition.php
 ```
@@ -118,6 +124,7 @@ If you have PHP 8.2+ installed locally:
 php Singletone/Singleton.php
 php Factory/Factory.php
 php Builder/Builder.php
+php Prototype/Prototype.php
 php Composition/Composition.php
 ```
 
@@ -128,7 +135,6 @@ php Composition/Composition.php
 ```plaintext
 .
 ├── Builder/
-│   ├── classes/
 │   ├── Vehicle.php
 │   ├── VehicleBuilder.php
 │   └── Builder.php
@@ -152,6 +158,8 @@ php Composition/Composition.php
 │   ├── VehicleFactory.php
 │   └── Factory.php
 ├── Prototype/
+│   ├── Vehicle.php
+│   └── Prototype.php
 ├── Singletone/
 │   ├── classes/
 │   │   ├── EagerInitialization.php
