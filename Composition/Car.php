@@ -6,14 +6,7 @@ require_once __DIR__ . '/interfaces/EngineInterface.php';
 require_once __DIR__ . '/interfaces/GpsInterface.php';
 require_once __DIR__ . '/interfaces/AudioInterface.php';
 
-/**
- * Car is COMPOSED of:
- * - EngineInterface (Engine)
- * - GpsInterface (GPS)
- * - AudioInterface (Audio / Sound System)
- *
- * This demonstrates the "HAS-A" relationship.
- */
+
 class Car
 {
     public function __construct(
@@ -24,7 +17,6 @@ class Car
         private ?AudioInterface $audio = null
     ) {}
 
-    // Components can be swapped dynamically at runtime!
     public function setEngine(EngineInterface $newEngine): void
     {
         $this->engine = $newEngine;

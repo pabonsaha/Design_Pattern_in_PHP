@@ -17,3 +17,8 @@ Builder Design pattern
 1. Creational Design pattern
 2. Used when we have too many arguments to send in Constructor and it's hard to maintain the order
 3. When We don't want to send all parameters in object initialisation (Used in query building, price building)
+
+Prototype Design Pattern
+
+1. Creational Design Pattern
+2. Used when you want to copy the object to new object and then we can modify as per our need.
