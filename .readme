@@ -1,0 +1,6 @@
+Singleton Design pattern
+
+1. Creational Design pattern.
+2. Only one instance of the class should exits.
+3. Other classes should be able to get instance of the Singleton class.
+4. Used in Logging, Cache, Session, Drivers.
