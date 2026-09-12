@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-require_once __DIR__ . '/../Interfaces/AudioInterface.php';
+require_once __DIR__ . '/../interfaces/AudioInterface.php';
 
 class BluetoothSoundSystem implements AudioInterface
 {

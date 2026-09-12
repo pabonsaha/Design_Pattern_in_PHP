@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-require_once __DIR__ . '/../Interfaces/GpsInterface.php';
+require_once __DIR__ . '/../interfaces/GpsInterface.php';
 
 class SatelliteGps implements GpsInterface
 {

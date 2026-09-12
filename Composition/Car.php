@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-require_once __DIR__ . '/Interfaces/EngineInterface.php';
-require_once __DIR__ . '/Interfaces/GpsInterface.php';
-require_once __DIR__ . '/Interfaces/AudioInterface.php';
+require_once __DIR__ . '/interfaces/EngineInterface.php';
+require_once __DIR__ . '/interfaces/GpsInterface.php';
+require_once __DIR__ . '/interfaces/AudioInterface.php';
 
 /**
  * Car is COMPOSED of:

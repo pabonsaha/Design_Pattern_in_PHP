@@ -1,8 +1,8 @@
 <?php
 
-require_once __DIR__ . '/Classes/EagerInitialization.php';
-require_once __DIR__ . '/Classes/LazyInitialition.php';
-require_once __DIR__ . '/Classes/ThreadSafe.php';
+require_once __DIR__ . '/classes/EagerInitialization.php';
+require_once __DIR__ . '/classes/LazyInitialition.php';
+require_once __DIR__ . '/classes/ThreadSafe.php';
 
 class Singleton
 {

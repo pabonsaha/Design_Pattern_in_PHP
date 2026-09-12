@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 // Load the composed class and components
 require_once __DIR__ . '/Car.php';
-require_once __DIR__ . '/Components/ElectricEngine.php';
-require_once __DIR__ . '/Components/V8GasEngine.php';
-require_once __DIR__ . '/Components/SatelliteGps.php';
-require_once __DIR__ . '/Components/BluetoothSoundSystem.php';
+require_once __DIR__ . '/classes/ElectricEngine.php';
+require_once __DIR__ . '/classes/V8GasEngine.php';
+require_once __DIR__ . '/classes/SatelliteGps.php';
+require_once __DIR__ . '/classes/BluetoothSoundSystem.php';
 
 
 $tesla = new Car(

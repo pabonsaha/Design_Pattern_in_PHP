@@ -11,3 +11,9 @@ Factory Design pattern
 2. Used when we have multiple sub-classes of a super class(parent class) and based on input we want to return one class instance.
 3. It provides abstraction between implementation and client classes.
 4. Remove the instantiation of client class from client code.
+
+Builder Design pattern
+
+1. Creational Design pattern
+2. Used when we have too many arguments to send in Constructor and it's hard to maintain the order
+3. When We don't want to send all parameters in object initialisation (Used in query building, price building)
