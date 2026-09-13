@@ -16,6 +16,7 @@ A practical, clean, and modern implementation of Software Design Patterns in **P
   - [Proxy Pattern](#proxy-pattern)
   - [Facade Pattern](#facade-pattern)
   - [Decorator Pattern](#decorator-pattern)
+  - [Adapter Pattern](#adapter-pattern)
 - [Getting Started](#getting-started)
   - [Running with Docker](#running-with-docker)
   - [Running Directly with PHP CLI](#running-directly-with-php-cli)
@@ -137,6 +138,23 @@ Creational design patterns deal with object creation mechanisms, increasing flex
   * **Single Responsibility & Open/Closed Principle:** Each feature is cleanly isolated in its own decorator class and can be combined or extended dynamically without modifying existing classes.
 * **Common Use Cases:** Middleware pipelines (HTTP request/response filters), UI styling / widget wrappers, Stream wrappers (Compression, Encryption, Buffering), Dynamic price or discount calculation.
 
+---
+
+### Adapter Pattern
+> Allows objects with incompatible interfaces to collaborate by converting the interface of one class into an interface that clients expect.
+
+* **Folder:** `Adapter/`
+* **Key Components:**
+  * **Target Interface (`interfaces/WebDriver.php`):** The standard domain interface expected by the client (`getElement(): void`, `selectElement(): void`).
+  * **Concrete Target (`classes/ChromeDriver.php`):** Direct implementation of the target `WebDriver` interface.
+  * **Adaptee (`classes/IEDriver.php`):** An incompatible third-party or legacy class with different method names (`findElement()`, `clickElement()`).
+  * **Adapter (`classes/WebDriverAdapter.php`):** Implements `WebDriver` and wraps an instance of `IEDriver`, translating `getElement()` into `findElement()` and `selectElement()` into `clickElement()`.
+  * **Client / Runner (`Adapter.php`):** Demonstrates interacting with both native compatible drivers and adapted incompatible drivers seamlessly through the `WebDriver` interface.
+* **Why Use It:**
+  * **Interoperability:** Enables legacy or third-party classes to work with modern codebases without modifying their original source code.
+  * **Single Responsibility & Open/Closed Principle:** Separates interface translation logic from business logic, making it easy to introduce new adapters without altering existing drivers.
+* **Common Use Cases:** Third-party SDK wrappers (Payment gateways, Cloud storage), Legacy API modernization, Database or Logger driver normalization.
+
 
 ## Getting Started
 
@@ -174,6 +192,9 @@ docker compose exec php php Facade/Facade.php
 
 # Decorator Pattern
 docker compose exec php php Decorator/Decorator.php
+
+# Adapter Pattern
+docker compose exec php php Adapter/Adapter.php
 ```
 
 ### Running Directly with PHP CLI
@@ -189,6 +210,7 @@ php Composition/Composition.php
 php Proxy/Proxy.php
 php Facade/Facade.php
 php Decorator/Decorator.php
+php Adapter/Adapter.php
 ```
 
 ---
@@ -197,6 +219,14 @@ php Decorator/Decorator.php
 
 ```plaintext
 .
+├── Adapter/
+│   ├── classes/
+│   │   ├── ChromeDriver.php
+│   │   ├── IEDriver.php
+│   │   └── WebDriverAdapter.php
+│   ├── interfaces/
+│   │   └── WebDriver.php
+│   └── Adapter.php
 ├── Builder/
 │   ├── Vehicle.php
 │   ├── VehicleBuilder.php

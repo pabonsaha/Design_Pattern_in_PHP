@@ -1,4 +1,7 @@
 <?php
+
+namespace Builder;
+
 require_once __DIR__ . '/VehicleBuilder.php';
 
 class Vehicle

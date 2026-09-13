@@ -1,5 +1,7 @@
 <?php
 
+use Builder\VehicleBuilder;
+
 require_once __DIR__ . '/VehicleBuilder.php';
 
 $vehicle = (new VehicleBuilder())
