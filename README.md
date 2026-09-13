@@ -14,6 +14,8 @@ A practical, clean, and modern implementation of Software Design Patterns in **P
 - [Structural Patterns & Principles](#structural-patterns--principles)
   - [Composition over Inheritance](#composition-over-inheritance)
   - [Proxy Pattern](#proxy-pattern)
+  - [Facade Pattern](#facade-pattern)
+  - [Decorator Pattern](#decorator-pattern)
 - [Getting Started](#getting-started)
   - [Running with Docker](#running-with-docker)
   - [Running Directly with PHP CLI](#running-directly-with-php-cli)
@@ -106,10 +108,35 @@ Creational design patterns deal with object creation mechanisms, increasing flex
 ---
 
 ### Facade Pattern
+> Provides a simplified, high-level interface to a complex subsystem or set of interfaces, making the subsystem easier to use and decoupling clients from internal routing and driver details.
 
-1. Structural design pattern
-22. Used when there are multiple interfadces of similar kind of job, then we add a facade interface, which provide better interface to these interface and client. it basically help in routing to related interface.
-3. Example Drivers, Database
+* **Folder:** `Facade/`
+* **Key Components:**
+  * **Subsystem Classes (`classes/Chrome.php`, `classes/Firefox.php`):** Specialized browser drivers containing vendor-specific logic for driver initialization and generating HTML / JUnit reports.
+  * **Facade (`WebExplorerHelperFacade.php`):** Offers a unified static interface (`generateReport()`) that encapsulates driver selection, instantiation, and report routing via PHP `match` expressions.
+  * **Client / Runner (`Facade.php`):** Demonstrates generating reports through the facade with a single method call without directly instantiating or managing individual browser driver classes.
+* **Why Use It:**
+  * **Simplified API:** Shields clients from subsystem complexities, multiple class dependencies, and internal configurations.
+  * **Loose Coupling:** Clients interact solely with the Facade; subsystem classes can be modified or extended with zero changes to client code.
+* **Common Use Cases:** Unified API clients / SDKs, Multi-driver wrappers (Databases, File Storage, Cache engines), Complex third-party library integrations.
+
+---
+
+### Decorator Pattern
+> Allows attaching new behaviors and responsibilities to objects dynamically at runtime by placing them inside special wrapper objects, without altering the underlying class.
+
+* **Folder:** `Decorator/`
+* **Key Components:**
+  * **Component Contract (`interfaces/Dress.php`):** Common interface declaring `assemble(): void` implemented by both concrete components and decorators.
+  * **Concrete Component (`classes/BasicDress.php`):** The foundational base object providing standard behavior.
+  * **Base Decorator (`decorator/DressDecorator.php`):** Implements `Dress`, maintains a reference to a wrapped `Dress` instance (`$this->dress`), and forwards `assemble()` calls to it.
+  * **Concrete Decorators (`classes/SportyDress.php`, `classes/FancyDress.php`, `classes/CasualDress.php`):** Extend `DressDecorator` to dynamically inject specialized styles and behavior around wrapped objects.
+  * **Client / Runner (`Decorator.php`):** Demonstrates creating standalone dresses as well as composing stacked multi-feature combinations (e.g., `CasualDress(FancyDress(BasicDress))` or `SportyDress(FancyDress(BasicDress))`) at runtime.
+* **Why Use It:**
+  * **Avoids Class Explosion:** Eliminates the need to create static subclass combinations (e.g., `SportyAndFancyDress`, `CasualAndFancyDress`) for every possible feature pairing.
+  * **Single Responsibility & Open/Closed Principle:** Each feature is cleanly isolated in its own decorator class and can be combined or extended dynamically without modifying existing classes.
+* **Common Use Cases:** Middleware pipelines (HTTP request/response filters), UI styling / widget wrappers, Stream wrappers (Compression, Encryption, Buffering), Dynamic price or discount calculation.
+
 
 ## Getting Started
 
@@ -141,6 +168,12 @@ docker compose exec php php Composition/Composition.php
 
 # Proxy Pattern
 docker compose exec php php Proxy/Proxy.php
+
+# Facade Pattern
+docker compose exec php php Facade/Facade.php
+
+# Decorator Pattern
+docker compose exec php php Decorator/Decorator.php
 ```
 
 ### Running Directly with PHP CLI
@@ -154,6 +187,8 @@ php Builder/Builder.php
 php Prototype/Prototype.php
 php Composition/Composition.php
 php Proxy/Proxy.php
+php Facade/Facade.php
+php Decorator/Decorator.php
 ```
 
 ---
@@ -178,6 +213,23 @@ php Proxy/Proxy.php
 │   │   └── GpsInterface.php
 │   ├── Car.php
 │   └── Composition.php
+├── Decorator/
+│   ├── classes/
+│   │   ├── BasicDress.php
+│   │   ├── CasualDress.php
+│   │   ├── FancyDress.php
+│   │   └── SportyDress.php
+│   ├── decorator/
+│   │   └── DressDecorator.php
+│   ├── interfaces/
+│   │   └── Dress.php
+│   └── Decorator.php
+├── Facade/
+│   ├── classes/
+│   │   ├── Chrome.php
+│   │   └── Firefox.php
+│   ├── WebExplorerHelperFacade.php
+│   └── Facade.php
 ├── Factory/
 │   ├── classes/
 │   │   ├── Bike.php
