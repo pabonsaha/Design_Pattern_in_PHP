@@ -105,6 +105,12 @@ Creational design patterns deal with object creation mechanisms, increasing flex
 
 ---
 
+### Facade Pattern
+
+1. Structural design pattern
+22. Used when there are multiple interfadces of similar kind of job, then we add a facade interface, which provide better interface to these interface and client. it basically help in routing to related interface.
+3. Example Drivers, Database
+
 ## Getting Started
 
 ### Running with Docker
