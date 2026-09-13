@@ -13,6 +13,7 @@ A practical, clean, and modern implementation of Software Design Patterns in **P
   - [4. Prototype Pattern](#4-prototype-pattern)
 - [Structural Patterns & Principles](#structural-patterns--principles)
   - [Composition over Inheritance](#composition-over-inheritance)
+  - [Proxy Pattern](#proxy-pattern)
 - [Getting Started](#getting-started)
   - [Running with Docker](#running-with-docker)
   - [Running Directly with PHP CLI](#running-directly-with-php-cli)
@@ -85,6 +86,23 @@ Creational design patterns deal with object creation mechanisms, increasing flex
   * **Concrete Implementations (`classes/`):** `V8GasEngine`, `ElectricEngine`, `SatelliteGps`, `BluetoothSoundSystem`.
   * **Composed Class (`Car.php`):** Aggregates interfaces, allowing hot-swapping components at runtime (e.g., switching a car engine from V8 to Electric on the fly).
 
+
+---
+
+### Proxy Pattern
+> Provides a surrogate or placeholder for another object to control access to it, allowing operations to be performed before or after the request reaches the target object.
+
+* **Folder:** `Proxy/`
+* **Key Components:**
+  * **Subject Interface (`interfaces/DatabaseExecuter.php`):** Defines the common contract (`excecuteDatabase()`) implemented by both the real subject and the proxy.
+  * **Real Subject (`DatabaseExecuterImpl.php`):** Implements direct execution logic for database queries.
+  * **Protection Proxy (`DatabaseExecuterProxy.php`):** Wraps the real subject and controls access based on credentials (e.g., restricting destructive queries like `DELETE` to administrator roles).
+  * **Client / Runner (`Proxy.php`):** Demonstrates how the proxy intercepts unauthorized requests for non-admin users while allowing authorized queries for admin users.
+* **Why Use It:**
+  * **Access Control (Protection Proxy):** Protects sensitive or destructive actions by checking permissions before delegating to the target object.
+  * **Separation of Concerns:** Keeps authorization and access-control logic decoupled from core database execution.
+* **Common Use Cases:** Access control / Authorization proxies, Lazy loading (Virtual Proxy), Caching expensive operations (Cache Proxy), Logging and request auditing. 
+
 ---
 
 ## Getting Started
@@ -114,6 +132,9 @@ docker compose exec php php Prototype/Prototype.php
 
 # Composition Principle
 docker compose exec php php Composition/Composition.php
+
+# Proxy Pattern
+docker compose exec php php Proxy/Proxy.php
 ```
 
 ### Running Directly with PHP CLI
@@ -126,6 +147,7 @@ php Factory/Factory.php
 php Builder/Builder.php
 php Prototype/Prototype.php
 php Composition/Composition.php
+php Proxy/Proxy.php
 ```
 
 ---
@@ -160,6 +182,12 @@ php Composition/Composition.php
 ├── Prototype/
 │   ├── Vehicle.php
 │   └── Prototype.php
+├── Proxy/
+│   ├── interfaces/
+│   │   └── DatabaseExecuter.php
+│   ├── DatabaseExecuterImpl.php
+│   ├── DatabaseExecuterProxy.php
+│   └── Proxy.php
 ├── Singletone/
 │   ├── classes/
 │   │   ├── EagerInitialization.php
