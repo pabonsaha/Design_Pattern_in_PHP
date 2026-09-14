@@ -17,6 +17,8 @@ A practical, clean, and modern implementation of Software Design Patterns in **P
   - [Facade Pattern](#facade-pattern)
   - [Decorator Pattern](#decorator-pattern)
   - [Adapter Pattern](#adapter-pattern)
+- [Behavioral Patterns](#behavioral-patterns)
+  - [Observer Pattern](#observer-pattern)
 - [Getting Started](#getting-started)
   - [Running with Docker](#running-with-docker)
   - [Running Directly with PHP CLI](#running-directly-with-php-cli)
@@ -155,6 +157,29 @@ Creational design patterns deal with object creation mechanisms, increasing flex
   * **Single Responsibility & Open/Closed Principle:** Separates interface translation logic from business logic, making it easy to introduce new adapters without altering existing drivers.
 * **Common Use Cases:** Third-party SDK wrappers (Payment gateways, Cloud storage), Legacy API modernization, Database or Logger driver normalization.
 
+---
+
+## Behavioral Patterns
+
+Behavioral design patterns are concerned with algorithms and the assignment of responsibilities between objects, characterizing complex control flows.
+
+### Observer Pattern
+> Defines a one-to-many subscription dependency between objects so that when one object (Subject) changes state, all its dependents (Observers) are notified and updated automatically.
+
+* **Folder:** `Observer/`
+* **Key Components:**
+  * **Subject Interface (`interfaces/Subject.php`):** Declares the contract for managing subscribers (`register(Observer $obj): void`, `unRegister(Observer $obj): void`) and broadcasting updates (`notifyObservers(): void`).
+  * **Observer Interface (`interfaces/Observer.php`):** Declares the update contract (`update(string $location): void`) for objects that listen for state changes.
+  * **Concrete Subject (`classes/DeliveryData.php`):** Maintains a list of registered observers and notifies them whenever the delivery location changes (`locationChange()`).
+  * **Concrete Observers (`classes/Seller.php`, `classes/Users.php`, `classes/DeliveryWarehouse.php`):** Implement the `Observer` interface to receive real-time location updates and trigger their respective notification actions.
+  * **Client / Runner (`Observer.php`):** Registers `Seller`, `User`, and `DeliveryWarehouse` with a `DeliveryData` subject and triggers a location update event across all subscribers.
+* **Why Use It:**
+  * **Loose Coupling:** The subject only depends on the `Observer` interface, without knowing the concrete classes or internal implementation of its subscribers.
+  * **Open/Closed Principle:** New observers (e.g., SMS services, push notification dispatchers, audit loggers) can be introduced at any time without altering subject code.
+  * **Broadcast Communication:** Enables clean, one-to-many event notification workflows across decoupled application layers.
+* **Common Use Cases:** Real-time parcel / delivery tracking, Event-driven notifications (Email, SMS, Webhooks), UI state management, Pub/Sub message queues.
+
+---
 
 ## Getting Started
 
@@ -195,6 +220,9 @@ docker compose exec php php Decorator/Decorator.php
 
 # Adapter Pattern
 docker compose exec php php Adapter/Adapter.php
+
+# Observer Pattern
+docker compose exec php php Observer/Observer.php
 ```
 
 ### Running Directly with PHP CLI
@@ -211,6 +239,7 @@ php Proxy/Proxy.php
 php Facade/Facade.php
 php Decorator/Decorator.php
 php Adapter/Adapter.php
+php Observer/Observer.php
 ```
 
 ---
@@ -267,6 +296,16 @@ php Adapter/Adapter.php
 │   │   └── Vehicle.php
 │   ├── VehicleFactory.php
 │   └── Factory.php
+├── Observer/
+│   ├── classes/
+│   │   ├── DeliveryData.php
+│   │   ├── DeliveryWarehouse.php
+│   │   ├── Seller.php
+│   │   └── Users.php
+│   ├── interfaces/
+│   │   ├── Observer.php
+│   │   └── Subject.php
+│   └── Observer.php
 ├── Prototype/
 │   ├── Vehicle.php
 │   └── Prototype.php
